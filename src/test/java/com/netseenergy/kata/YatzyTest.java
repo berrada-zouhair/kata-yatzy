@@ -82,23 +82,25 @@ public class YatzyTest {
 
     @Test
     public void should_return_sum_two_pairs() {
-        assertEquals(16, two_pair(3, 3, 5, 4, 5));
-        assertEquals(16, two_pair(3, 3, 5, 5, 5));
-        assertEquals(0, two_pair(1, 1, 2, 3, 4));
+        assertEquals(16, twoPair(3, 3, 5, 4, 5));
+        assertEquals(16, twoPair(3, 3, 5, 5, 5));
+        assertEquals(0, twoPair(1, 1, 2, 3, 4));
     }
 
     @Test
-    public void three_of_a_kind() {
-        assertEquals(9, Yatzy.three_of_a_kind(3, 3, 3, 4, 5));
-        assertEquals(15, Yatzy.three_of_a_kind(5, 3, 5, 4, 5));
-        assertEquals(9, Yatzy.three_of_a_kind(3, 3, 3, 3, 5));
+    public void should_return_sum_of_three_of_a_kind() {
+        assertEquals(9, threeOfAKind(3, 3, 3, 4, 5));
+        assertEquals(15, threeOfAKind(5, 3, 5, 4, 5));
+        assertEquals(9, threeOfAKind(3, 3, 3, 3, 5));
+        assertEquals(0, threeOfAKind(3, 3, 4, 5, 6));
     }
 
     @Test
-    public void four_of_a_knd() {
-        assertEquals(12, Yatzy.four_of_a_kind(3, 3, 3, 3, 5));
-        assertEquals(20, Yatzy.four_of_a_kind(5, 5, 5, 4, 5));
-        assertEquals(9, Yatzy.three_of_a_kind(3, 3, 3, 3, 3));
+    public void should_return_sum_four_of_a_knd() {
+        assertEquals(12, fourOfAKind(3, 3, 3, 3, 5));
+        assertEquals(20, fourOfAKind(5, 5, 5, 4, 5));
+        assertEquals(12, fourOfAKind(3, 3, 3, 3, 3));
+        assertEquals(0, fourOfAKind(2, 2, 2, 5, 5));
     }
 
     @Test
