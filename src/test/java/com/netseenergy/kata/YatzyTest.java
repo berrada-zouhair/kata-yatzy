@@ -81,9 +81,10 @@ public class YatzyTest {
     }
 
     @Test
-    public void two_Pair() {
-        assertEquals(16, Yatzy.two_pair(3, 3, 5, 4, 5));
-        assertEquals(16, Yatzy.two_pair(3, 3, 5, 5, 5));
+    public void should_return_sum_two_pairs() {
+        assertEquals(16, two_pair(3, 3, 5, 4, 5));
+        assertEquals(16, two_pair(3, 3, 5, 5, 5));
+        assertEquals(0, two_pair(1, 1, 2, 3, 4));
     }
 
     @Test
