@@ -1,6 +1,7 @@
 package com.netseenergy.kata;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.IntStream;
@@ -91,37 +92,13 @@ public class Yatzy {
     }
 
     public static int smallStraight(int d1, int d2, int d3, int d4, int d5) {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[d1 - 1] += 1;
-        tallies[d2 - 1] += 1;
-        tallies[d3 - 1] += 1;
-        tallies[d4 - 1] += 1;
-        tallies[d5 - 1] += 1;
-        if (tallies[0] == 1 &&
-                tallies[1] == 1 &&
-                tallies[2] == 1 &&
-                tallies[3] == 1 &&
-                tallies[4] == 1)
-            return 15;
-        return 0;
+        HashSet<Integer> dices = new HashSet<>(Arrays.asList(d1, d2, d3, d4, d5));
+        return dices.equals(new HashSet<>(Arrays.asList(1, 2, 3, 4, 5))) ? 15 : 0;
     }
 
     public static int largeStraight(int d1, int d2, int d3, int d4, int d5) {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[d1 - 1] += 1;
-        tallies[d2 - 1] += 1;
-        tallies[d3 - 1] += 1;
-        tallies[d4 - 1] += 1;
-        tallies[d5 - 1] += 1;
-        if (tallies[1] == 1 &&
-                tallies[2] == 1 &&
-                tallies[3] == 1 &&
-                tallies[4] == 1
-                && tallies[5] == 1)
-            return 20;
-        return 0;
+        HashSet<Integer> dices = new HashSet<>(Arrays.asList(d1, d2, d3, d4, d5));
+        return dices.equals(new HashSet<>(Arrays.asList(2, 3, 4, 5, 6))) ? 20 : 0;
     }
 
     public static int fullHouse(int d1, int d2, int d3, int d4, int d5) {
