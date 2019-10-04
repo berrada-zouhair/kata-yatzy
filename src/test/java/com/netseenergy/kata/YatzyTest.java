@@ -2,6 +2,7 @@ package com.netseenergy.kata;
 
 import org.junit.Test;
 
+import static com.netseenergy.kata.Yatzy.chance;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -9,10 +10,9 @@ public class YatzyTest {
 
     @Test
     public void chance_scores_sum_of_all_dice() {
-        int expected = 15;
-        int actual = Yatzy.chance(2, 3, 4, 5, 1);
-        assertEquals(expected, actual);
-        assertEquals(16, Yatzy.chance(3, 3, 4, 5, 1));
+        assertEquals(15, chance(2, 3, 4, 5, 1));
+        assertEquals(16, chance(3, 3, 4, 5, 1));
+        assertEquals(5, chance(1, 1, 1, 1, 1));
     }
 
     @Test
