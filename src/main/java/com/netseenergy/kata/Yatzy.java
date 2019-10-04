@@ -2,9 +2,11 @@ package com.netseenergy.kata;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.IntStream;
 
 import static java.util.Collections.frequency;
+import static java.util.stream.Collectors.toSet;
 
 public class Yatzy {
 
@@ -62,23 +64,13 @@ public class Yatzy {
     }
 
     public static int two_pair(int d1, int d2, int d3, int d4, int d5) {
-        int[] counts = new int[6];
-        counts[d1 - 1]++;
-        counts[d2 - 1]++;
-        counts[d3 - 1]++;
-        counts[d4 - 1]++;
-        counts[d5 - 1]++;
-        int n = 0;
-        int score = 0;
-        for (int i = 0; i < 6; i += 1)
-            if (counts[6 - i - 1] >= 2) {
-                n++;
-                score += (6 - i);
-            }
-        if (n == 2)
-            return score * 2;
-        else
-            return 0;
+        List<Integer> dices = Arrays.asList(d1, d2, d3, d4, d5);
+        Set<Integer> twoPairs = dices.stream()
+                .mapToInt(Integer::intValue)
+                .filter(dice -> frequency(dices, dice) > 1)
+                .boxed()
+                .collect(toSet());
+        return twoPairs.size() == 2 ? twoPairs.stream().mapToInt(Integer::intValue).sum() * 2 : 0;
     }
 
     public static int four_of_a_kind(int _1, int _2, int d3, int d4, int d5) {
