@@ -3,6 +3,7 @@ package com.netseenergy.kata;
 import org.junit.Test;
 
 import static com.netseenergy.kata.Yatzy.chance;
+import static com.netseenergy.kata.Yatzy.yatzy;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -17,11 +18,19 @@ public class YatzyTest {
 
     @Test
     public void yatzy_scores_50() {
-        int expected = 50;
-        int actual = Yatzy.yatzy(4, 4, 4, 4, 4);
-        assertEquals(expected, actual);
-        assertEquals(50, Yatzy.yatzy(6, 6, 6, 6, 6));
-        assertEquals(0, Yatzy.yatzy(6, 6, 6, 6, 3));
+        assertEquals(50, yatzy(1, 1, 1, 1, 1));
+        assertEquals(50, yatzy(2, 2, 2, 2, 2));
+        assertEquals(50, yatzy(3, 3, 3, 3, 3));
+        assertEquals(50, yatzy(4, 4, 4, 4, 4));
+        assertEquals(50, yatzy(5, 5, 5, 5, 5));
+        assertEquals(50, yatzy(6, 6, 6, 6, 6));
+    }
+
+    @Test
+    public void yatzy_scores_0() {
+        assertEquals(0, yatzy(6, 6, 6, 6, 3));
+        assertEquals(0, yatzy(1, 1, 1, 1, 4));
+        assertEquals(0, yatzy(3, 3, 3, 3, 1));
     }
 
     @Test
