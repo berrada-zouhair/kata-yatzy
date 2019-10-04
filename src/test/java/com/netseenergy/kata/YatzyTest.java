@@ -53,23 +53,23 @@ public class YatzyTest {
 
     @Test
     public void sum_fours() {
-        assertEquals(12, new Yatzy(4, 4, 4, 5, 5).fours());
-        assertEquals(8, new Yatzy(4, 4, 5, 5, 5).fours());
-        assertEquals(4, new Yatzy(4, 5, 5, 5, 5).fours());
+        assertEquals(12, fours(4, 4, 4, 5, 5));
+        assertEquals(8, fours(4, 4, 5, 5, 5));
+        assertEquals(4, fours(4, 5, 5, 5, 5));
     }
 
     @Test
     public void sum_fives() {
-        assertEquals(10, new Yatzy(4, 4, 4, 5, 5).fives());
-        assertEquals(15, new Yatzy(4, 4, 5, 5, 5).fives());
-        assertEquals(20, new Yatzy(4, 5, 5, 5, 5).fives());
+        assertEquals(10, fives(4, 4, 4, 5, 5));
+        assertEquals(15, fives(4, 4, 5, 5, 5));
+        assertEquals(20, fives(4, 5, 5, 5, 5));
     }
 
     @Test
     public void sum_sixes() {
-        assertEquals(0, new Yatzy(4, 4, 4, 5, 5).sixes());
-        assertEquals(6, new Yatzy(4, 4, 6, 5, 5).sixes());
-        assertEquals(18, new Yatzy(6, 5, 6, 6, 5).sixes());
+        assertEquals(0, sixes(4, 4, 4, 5, 5));
+        assertEquals(6, sixes(4, 4, 6, 5, 5));
+        assertEquals(18, sixes(6, 5, 6, 6, 5));
     }
 
     @Test

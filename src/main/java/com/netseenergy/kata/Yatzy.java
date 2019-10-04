@@ -4,10 +4,7 @@ import java.util.stream.IntStream;
 
 public class Yatzy {
 
-    private int[] dices;
-
-    public Yatzy(int d1, int d2, int d3, int d4, int d5) {
-        dices = new int[]{d1, d2, d3, d4, d5};
+    private Yatzy() {
     }
 
     public static int chance(int d1, int d2, int d3, int d4, int d5) {
@@ -22,7 +19,7 @@ public class Yatzy {
     }
 
     private static int sumSameDices(int seekedNumber, int... dices) {
-        return (int)IntStream.of(dices)
+        return (int) IntStream.of(dices)
                 .filter(dice -> dice == seekedNumber)
                 .count() * seekedNumber;
     }
@@ -39,19 +36,16 @@ public class Yatzy {
         return sumSameDices(3, d1, d2, d3, d4, d5);
     }
 
-    public int fours() {
-        //I don't see any benefit in neither having this method as a nonstatic nor having dices field !
-        return sumSameDices(4, dices);
+    public static int fours(int d1, int d2, int d3, int d4, int d5) {
+        return sumSameDices(4, d1, d2, d3, d4, d5);
     }
 
-    public int fives() {
-        //I don't see any benefit in neither having this method as a nonstatic nor having dices field !
-        return sumSameDices(5, dices);
+    public static int fives(int d1, int d2, int d3, int d4, int d5) {
+        return sumSameDices(5, d1, d2, d3, d4, d5);
     }
 
-    public int sixes() {
-        //I don't see any benefit in neither having this method as a nonstatic nor having dices field !
-        return sumSameDices(6, dices);
+    public static int sixes(int d1, int d2, int d3, int d4, int d5) {
+        return sumSameDices(6, d1, d2, d3, d4, d5);
     }
 
     public static int score_pair(int d1, int d2, int d3, int d4, int d5) {
