@@ -101,37 +101,11 @@ Yatzy.fourOfAKind = function (d1, d2, d3, d4, d5) {
 }
 
 Yatzy.smallStraight = function (d1, d2, d3, d4, d5) {
-    var tallies;
-    tallies = [0, 0, 0, 0, 0, 0, 0]
-    tallies[d1 - 1] += 1;
-    tallies[d2 - 1] += 1;
-    tallies[d3 - 1] += 1;
-    tallies[d4 - 1] += 1;
-    tallies[d5 - 1] += 1;
-    if (tallies[0] == 1 &&
-        tallies[1] == 1 &&
-        tallies[2] == 1 &&
-        tallies[3] == 1 &&
-        tallies[4] == 1)
-        return 15;
-    return 0;
+    return _.isEqual([1, 2, 3, 4, 5], [d1, d2, d3, d4, d5].sort()) ? 15 : 0
 }
 
 Yatzy.largeStraight = function (d1, d2, d3, d4, d5) {
-    var tallies;
-    tallies = [0, 0, 0, 0, 0, 0, 0, 0];
-    tallies[d1 - 1] += 1;
-    tallies[d2 - 1] += 1;
-    tallies[d3 - 1] += 1;
-    tallies[d4 - 1] += 1;
-    tallies[d5 - 1] += 1;
-    if (tallies[1] == 1 &&
-        tallies[2] == 1 &&
-        tallies[3] == 1 &&
-        tallies[4] == 1
-        && tallies[5] == 1)
-        return 20;
-    return 0;
+    return _.isEqual([2, 3, 4, 5, 6], [d1, d2, d3, d4, d5].sort()) ? 20 : 0
 }
 
 Yatzy.fullHouse = function (d1, d2, d3, d4, d5) {
