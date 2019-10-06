@@ -70,9 +70,10 @@ describe("One pair", function () {
 });
 
 describe("Two pair", function () {
-    it("scores the sum of the two pairs", function () {
-        assert.equal(16, Yatzy.two_pair(3, 3, 5, 4, 5));
-        assert.equal(16, Yatzy.two_pair(3, 3, 5, 5, 5));
+    it("should sum the two pair or get zero", function () {
+        assert.equal(16, Yatzy.twoPair(3, 3, 5, 4, 5));
+        assert.equal(16, Yatzy.twoPair(3, 3, 5, 5, 5));
+        assert.equal(0, Yatzy.twoPair(1, 1, 2, 3, 4));
     });
 });
 
