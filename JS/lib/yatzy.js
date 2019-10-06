@@ -70,39 +70,34 @@ Yatzy.twoPair = function (d1, d2, d3, d4, d5) {
         .filter(function (e) {
             return elementsWithRedundancy[e] > 1
         })
-        .map(function(e) {
+        .map(function (e) {
             return parseInt(e)
         })
         .value()
     return pairs.length === 2 ? _.sum(pairs) * 2 : 0
 }
 
-Yatzy.four_of_a_kind = function (_1, _2, d3, d4, d5) {
-    var tallies;
-    tallies = [0, 0, 0, 0, 0, 0, 0, 0]
-    tallies[_1 - 1]++;
-    tallies[_2 - 1]++;
-    tallies[d3 - 1]++;
-    tallies[d4 - 1]++;
-    tallies[d5 - 1]++;
-    for (i = 0; i < 6; i++)
-        if (tallies[i] >= 4)
-            return (i + 1) * 4;
-    return 0;
+function nOfAkind (n, d1, d2, d3, d4, d5) {
+    let elementsWithRedundancy = _.chain([d1, d2, d3, d4, d5])
+        .countBy(Math.floor)
+        .value();
+    let nKinds = _.chain(_.keys(elementsWithRedundancy))
+        .filter(function (e) {
+            return elementsWithRedundancy[e] >= n
+        })
+        .map(function (e) {
+            return parseInt(e)
+        })
+        .value();
+    return nKinds.length ? nKinds[0] * n : 0
 }
 
-Yatzy.three_of_a_kind = function (d1, d2, d3, d4, d5) {
-    var t;
-    t = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-    t[d1 - 1]++;
-    t[d2 - 1]++;
-    t[d3 - 1]++;
-    t[d4 - 1]++;
-    t[d5 - 1]++;
-    for (i = 0; i < 6; i++)
-        if (t[i] >= 3)
-            return (i + 1) * 3;
-    return 0;
+Yatzy.threeOfAKind = function (d1, d2, d3, d4, d5) {
+    return nOfAkind(3, d1, d2, d3, d4, d5)
+}
+
+Yatzy.fourOfAKind = function (d1, d2, d3, d4, d5) {
+    return nOfAkind(4, d1, d2, d3, d4, d5)
 }
 
 Yatzy.smallStraight = function (d1, d2, d3, d4, d5) {
