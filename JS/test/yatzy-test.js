@@ -92,16 +92,13 @@ describe("N of a kind", function () {
     });
 });
 
-describe("Small straight", function () {
-    it("scores 15", function () {
+describe("Straight of dices", function () {
+    it("Should get small straight", function () {
         assert.equal(15, Yatzy.smallStraight(1, 2, 3, 4, 5));
         assert.equal(15, Yatzy.smallStraight(2, 3, 4, 5, 1));
         assert.equal(0, Yatzy.smallStraight(1, 2, 2, 4, 5));
     });
-});
-
-describe("Large straight", function () {
-    it("scores 20", function () {
+    it("Should get large straight", function () {
         assert.equal(20, Yatzy.largeStraight(6, 2, 3, 4, 5));
         assert.equal(20, Yatzy.largeStraight(2, 3, 4, 5, 6));
         assert.equal(0, Yatzy.largeStraight(1, 2, 2, 4, 5));
