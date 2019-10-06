@@ -62,24 +62,19 @@ Yatzy.pair = function (d1, d2, d3, d4, d5) {
     return parseInt(max) ? (parseInt(max) * 2) : 0;
 }
 
-Yatzy.two_pair = function (d1, d2, d3, d4, d5) {
-    var counts = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    counts[d1 - 1]++;
-    counts[d2 - 1]++
-    counts[d3 - 1]++
-    counts[d4 - 1]++;
-    counts[d5 - 1]++;
-    var n = 0;
-    var score = 0;
-    for (i = 0; i < 6; i += 1)
-        if (counts[6 - i - 1] >= 2) {
-            n++;
-            score += (6 - i);
-        }
-    if (n == 2)
-        return score * 2;
-    else
-        return 0;
+Yatzy.twoPair = function (d1, d2, d3, d4, d5) {
+    let elementsWithRedundancy = _.chain([d1, d2, d3, d4, d5])
+        .countBy(Math.floor)
+        .value();
+    let pairs = _.chain(_.keys(elementsWithRedundancy))
+        .filter(function (e) {
+            return elementsWithRedundancy[e] > 1
+        })
+        .map(function(e) {
+            return parseInt(e)
+        })
+        .value()
+    return pairs.length === 2 ? _.sum(pairs) * 2 : 0
 }
 
 Yatzy.four_of_a_kind = function (_1, _2, d3, d4, d5) {
