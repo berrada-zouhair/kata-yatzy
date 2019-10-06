@@ -1,9 +1,9 @@
-var assert = require("assert");
-var Yatzy = require("../lib/yatzy");
+var assert = require('assert');
+var Yatzy = require('../lib/yatzy');
 
 
 describe('Chance', function () {
-    it('scores sum of all dice', function () {
+    it('should sum of all dices', function () {
         assert.equal(15, Yatzy.chance(2, 3, 4, 5, 1));
         assert.equal(16, Yatzy.chance(3, 3, 4, 5, 1));
     });
