@@ -1,41 +1,7 @@
 const _ = require('lodash');
-var Yatzy = function (d1, d2, d3, d4, _5) {
-    this.dice = [];
-    this.dice[0] = d1;
-    this.dice[1] = d2;
-    this.dice[2] = d3;
-    this.dice[3] = d4;
-    this.dice[4] = _5;
 
-    this.fours = function () {
-        var sum;
-        sum = 0;
-        for (at = 0; at != 5; at++) {
-            if (this.dice[at] == 4) {
-                sum += 4;
-            }
-        }
-        return sum;
-    }
-
-    this.fives = function () {
-        s = 0
-        var i
-        for (i = 0; i < this.dice.length; i++)
-            if (this.dice[i] == 5)
-                s = s + 5;
-        return s;
-    }
-
-    this.sixes = function () {
-        sum = 0;
-        for (var at = 0; at < this.dice.length; at++)
-            if (this.dice[at] == 6)
-                sum = sum + 6;
-        return sum;
-    }
+var Yatzy = function () {
 }
-
 
 Yatzy.chance = function (d1, d2, d3, d4, d5) {
     return _.sum([d1, d2, d3, d4, d5]);
@@ -49,37 +15,38 @@ Yatzy.yatzy = function (d1, d2, d3, d4, d5) {
     return sizeOfUniqElements === 1 ? 50 : 0;
 }
 
-Yatzy.ones = function (d1, d2, d3, d4, d5) {
-    var sum = 0;
-    if (d1 == 1) sum++;
-    if (d2 == 1) sum++;
-    if (d3 == 1) sum++;
-    if (d4 == 1) sum++;
-    if (d5 == 1)
-        sum++;
 
-    return sum;
+function sumSameDices (seekedNumber, d1, d2, d3, d4, d5) {
+    return _.chain([d1, d2, d3, d4, d5])
+        .filter(function (dice) {
+            return dice === seekedNumber;
+        })
+        .size()
+        .value() * seekedNumber;
+}
+
+Yatzy.ones = function (d1, d2, d3, d4, d5) {
+    return sumSameDices(1, d1, d2, d3, d4, d5)
 }
 
 Yatzy.twos = function (d1, d2, d3, d4, d5) {
-    var sum = 0;
-    if (d1 == 2) sum += 2;
-    if (d2 == 2) sum += 2;
-    if (d3 == 2) sum += 2;
-    if (d4 == 2) sum += 2;
-    if (d5 == 2) sum += 2;
-    return sum;
+    return sumSameDices(2, d1, d2, d3, d4, d5)
 }
 
 Yatzy.threes = function (d1, d2, d3, d4, d5) {
-    var s;
-    s = 0;
-    if (d1 == 3) s += 3;
-    if (d2 == 3) s += 3;
-    if (d3 == 3) s += 3;
-    if (d4 == 3) s += 3;
-    if (d5 == 3) s += 3;
-    return s;
+    return sumSameDices(3, d1, d2, d3, d4, d5)
+}
+
+Yatzy.fours = function (d1, d2, d3, d4, d5) {
+    return sumSameDices(4, d1, d2, d3, d4, d5)
+}
+
+Yatzy.fives = function (d1, d2, d3, d4, d5) {
+    return sumSameDices(5, d1, d2, d3, d4, d5)
+}
+
+Yatzy.sixes = function (d1, d2, d3, d4, d5) {
+    return sumSameDices(6, d1, d2, d3, d4, d5)
 }
 
 Yatzy.score_pair = function (d1, d2, d3, d4, d5) {
