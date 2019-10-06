@@ -41,16 +41,12 @@ Yatzy.chance = function (d1, d2, d3, d4, d5) {
     return _.sum([d1, d2, d3, d4, d5]);
 }
 
-Yatzy.yatzy = function () {
-    var counts = [0, 0, 0, 0, 0, 0, 0, 0];
-    for (var i = 0; i != arguments.length; ++i) {
-        var die = arguments[i];
-        counts[die - 1]++;
-    }
-    for (i = 0; i != 6; i++)
-        if (counts[i] == 5)
-            return 50;
-    return 0;
+Yatzy.yatzy = function (d1, d2, d3, d4, d5) {
+    var sizeOfUniqElements = _.chain([d1, d2, d3, d4, d5])
+        .uniq()
+        .size()
+        .value();
+    return sizeOfUniqElements === 1 ? 50 : 0;
 }
 
 Yatzy.ones = function (d1, d2, d3, d4, d5) {

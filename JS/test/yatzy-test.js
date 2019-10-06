@@ -9,11 +9,22 @@ describe('Chance', function () {
     });
 });
 
-describe("Yatzy", function () {
-    it("scores 50", function () {
+describe('Yatzy', function () {
+    it("dices_should_have_scores_50", function () {
         assert.equal(50, Yatzy.yatzy(4, 4, 4, 4, 4));
         assert.equal(50, Yatzy.yatzy(6, 6, 6, 6, 6));
         assert.equal(0, Yatzy.yatzy(6, 6, 6, 6, 3));
+        assert.equal(50, Yatzy.yatzy(1, 1, 1, 1, 1));
+        assert.equal(50, Yatzy.yatzy(2, 2, 2, 2, 2));
+        assert.equal(50, Yatzy.yatzy(3, 3, 3, 3, 3));
+        assert.equal(50, Yatzy.yatzy(4, 4, 4, 4, 4));
+        assert.equal(50, Yatzy.yatzy(5, 5, 5, 5, 5));
+        assert.equal(50, Yatzy.yatzy(6, 6, 6, 6, 6));
+    });
+    it('dices_should_have_scores_0', function () {
+        assert.equal(0, Yatzy.yatzy(6, 6, 6, 6, 3));
+        assert.equal(0, Yatzy.yatzy(1, 1, 1, 1, 4));
+        assert.equal(0, Yatzy.yatzy(3, 3, 3, 3, 1));
     });
 });
 
