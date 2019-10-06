@@ -49,18 +49,17 @@ Yatzy.sixes = function (d1, d2, d3, d4, d5) {
     return sumSameDices(6, d1, d2, d3, d4, d5)
 }
 
-Yatzy.score_pair = function (d1, d2, d3, d4, d5) {
-    var counts = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    counts[d1 - 1]++;
-    counts[d2 - 1]++;
-    counts[d3 - 1]++;
-    counts[d4 - 1]++;
-    counts[d5 - 1]++;
-    var at;
-    for (at = 0; at != 6; at++)
-        if (counts[6 - at - 1] >= 2)
-            return (6 - at) * 2;
-    return 0;
+Yatzy.pair = function (d1, d2, d3, d4, d5) {
+    let elementsWithRedundancy = _.chain([d1, d2, d3, d4, d5])
+        .countBy(Math.floor)
+        .value();
+    let max = _.chain(_.keys(elementsWithRedundancy))
+        .filter(function (e) {
+            return elementsWithRedundancy[e] > 1
+        })
+        .max()
+        .value();
+    return parseInt(max) ? (parseInt(max) * 2) : 0;
 }
 
 Yatzy.two_pair = function (d1, d2, d3, d4, d5) {
