@@ -77,7 +77,7 @@ Yatzy.twoPair = function (d1, d2, d3, d4, d5) {
     return pairs.length === 2 ? _.sum(pairs) * 2 : 0
 }
 
-function nOfAkind (n, d1, d2, d3, d4, d5) {
+function nOfAKind (n, d1, d2, d3, d4, d5) {
     let elementsWithRedundancy = _.chain([d1, d2, d3, d4, d5])
         .countBy(Math.floor)
         .value();
@@ -93,11 +93,11 @@ function nOfAkind (n, d1, d2, d3, d4, d5) {
 }
 
 Yatzy.threeOfAKind = function (d1, d2, d3, d4, d5) {
-    return nOfAkind(3, d1, d2, d3, d4, d5)
+    return nOfAKind(3, d1, d2, d3, d4, d5)
 }
 
 Yatzy.fourOfAKind = function (d1, d2, d3, d4, d5) {
-    return nOfAkind(4, d1, d2, d3, d4, d5)
+    return nOfAKind(4, d1, d2, d3, d4, d5)
 }
 
 Yatzy.smallStraight = function (d1, d2, d3, d4, d5) {
@@ -109,37 +109,11 @@ Yatzy.largeStraight = function (d1, d2, d3, d4, d5) {
 }
 
 Yatzy.fullHouse = function (d1, d2, d3, d4, d5) {
-    var tallies;
-    var _2 = false;
-    var i;
-    var _2_at = 0;
-    var _3 = false;
-    var _3_at = 0;
-
-
-    tallies = [0, 0, 0, 0, 0, 0, 0, 0];
-    tallies[d1 - 1] += 1;
-    tallies[d2 - 1] += 1;
-    tallies[d3 - 1] += 1;
-    tallies[d4 - 1] += 1;
-    tallies[d5 - 1] += 1;
-
-    for (i = 0; i != 6; i += 1)
-        if (tallies[i] == 2) {
-            _2 = true;
-            _2_at = i + 1;
-        }
-
-    for (i = 0; i != 6; i += 1)
-        if (tallies[i] == 3) {
-            _3 = true;
-            _3_at = i + 1;
-        }
-
-    if (_2 && _3)
-        return _2_at * 2 + _3_at * 3;
-    else
-        return 0;
+    let areAllDicesSame = _.chain([d1, d2, d3, d4, d5]).uniq().size() === 1;
+    if (areAllDicesSame) return 0;
+    let isTwoAndTreeKind = nOfAKind(3, d1, d2, d3, d4, d5) > 0
+        && nOfAKind(2, d1, d2, d3, d4, d5) > 0;
+    return isTwoAndTreeKind ? this.chance(d1, d2, d3, d4, d5) : 0;
 }
 
 module.exports = Yatzy;
